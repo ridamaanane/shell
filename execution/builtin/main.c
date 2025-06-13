@@ -101,22 +101,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 // }
 
 
-int main(int argc, char **argv)
-{
-	int g_exit_status = 0;
 
-	char *args[argc + 1];
-	args[0] = "exit";
-	for (int i = 1; i < argc; i++)
-		args[i] = argv[i];
-	args[argc] = NULL;
-
-	do_exit(args, &g_exit_status);
-
-	// never reached unless too many args
-	printf("did not exit (too many arguments?)\n");
-	return 0;
-}
 
 
 
