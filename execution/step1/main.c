@@ -33,19 +33,19 @@ char *get_cmd_path(char *cmd)
     return (full_path);
 }
 
-void execute_external(char *cmd, char **env)
+void execute_external(t_cmd *cmd, char **env)
 {
     char *found_path = NULL;
     pid_t pid;
 
-    found_path = get_cmd_path(cmd);
+    cmd->argv[0] = found_path = get_cmd_path(cmd->argv[0]);
     if (found_path)
     {
         pid = fork();
-        char *args[] = {cmd, NULL};
         if (pid == 0) //child process success
         {
-            execve(found_path, args, env); //hna machi darori dir if statemn because howa la kan match kaydkhel okaydir khdmto  (replaces the current process with a new program)
+            find_redirection(cmd->redir);
+            execve(cmd->argv[0], cmd->argv, env); //hna machi darori dir if statemn because howa la kan match kaydkhel okaydir khdmto  (replaces the current process with a new program)
             perror("execve failed");
             exit(127);
         }
@@ -56,14 +56,23 @@ void execute_external(char *cmd, char **env)
         free(found_path);  
     }
     else
-        printf("%s: command not found\n", cmd);
+        printf("%s: command not found\n", cmd->argv[0]);
 }
 
 int main(int argc, char **argv, char **envp)
 {
     (void) argc;
-
-    execute_external(argv[1], envp);
+    char *_argv[] = {"cat", "./minishell.h", NULL};
+     
+    (void) argv;
+    t_cmd *cmd = malloc(sizeof(t_cmd));
+    cmd->argv = (char **) _argv;
+    cmd->redir = malloc(sizeof(t_redir));
+    cmd->redir->type = R_OUTPUT;
+    cmd->redir->filename = "anass";
+    cmd->redir->next = NULL;
+    cmd->next = NULL;
+    execute_external(cmd, envp);
 }
 
 
