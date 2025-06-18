@@ -52,7 +52,7 @@ void execute_external(t_cmd *cmd, char **env)
         else if (pid > 0)
             waitpid(pid, NULL, 0); //bghinah ytsena child osf without specifie chi haaja
         else
-            perror("fork failed");
+            perror("fuck this!");
         free(found_path);  
     }
     else
