@@ -47,7 +47,7 @@ void execute_external(t_cmd *cmd, char **env)
         if (pid == 0) //child process success
         {
             find_redirection(cmd->redir);
-            execve(found_path, cmd->argv, env); //hna machi darori dir if statemn because howa la kan match kaydkhel okaydir khdmto  (replaces the current process with a new program)
+            execve(found_path, cmd->argv, env); //hna machi darori dir if statemnt because howa la kan match kaydkhel okaydir khdmto  (replaces the current process with a new program)
             perror("execve failed");
             exit(127);
         }
@@ -70,7 +70,7 @@ int main(int argc, char **argv, char **envp)
     t_cmd *cmd = malloc(sizeof(t_cmd));
     cmd->argv = (char **) _argv;
     cmd->redir = malloc(sizeof(t_redir));
-    cmd->redir->type = R_OUTPUT;
+    cmd->redir->type = R_HERDOC;
     cmd->redir->filename = "rida";
     cmd->redir->next = NULL;
     cmd->next = NULL;
