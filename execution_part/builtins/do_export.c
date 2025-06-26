@@ -40,10 +40,11 @@ int do_export(char **args, t_env *env)
                     tmp = tmp->next;
 
                 tmp->next = new;
-            }
+            } 
             i++;
         }
     }
     return (0);
 }
 
+//mzl khasni logic dyal lakan deja var so khas bla mat3awd tcreeh tbdel ghir value dyalo like arg=value mn b3d drna arg=rida , hna rah name howa howa ms value tbdlat dkchi 3lach khasna liha logic
