@@ -1,10 +1,9 @@
-#ifndef MINISHELL_H
-#define MINISHELL_H
+#ifndef BUILTINS_H
+#define BUILTINS_H
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-
 
 
 typedef struct s_env {
@@ -13,15 +12,6 @@ typedef struct s_env {
     struct s_env *next;
 } t_env;
 
-
-typedef struct s_command {
-    char    **args;       
-    char    *infile;      
-    char    *outfile;      
-    int     append;        
-    int     pipe;          
-    struct s_command *next; 
-} t_command;
 
 //main.c
 size_t	ft_strlen(const char *s);

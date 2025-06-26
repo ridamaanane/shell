@@ -1,5 +1,5 @@
-#ifndef MINISHELL_H
-#define MINISHELL_H
+#ifndef EXECUTE_EXETERNAL_H
+#define EXECUTE_EXETERNAL_H
 
 #include <stdio.h>
 #include <unistd.h>
@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include "../../Libft/libft.h"
 #include <readline/readline.h>
+#include "../redirections/redirections.h"
 
 typedef enum s_redir_type
 {
@@ -32,5 +33,6 @@ typedef struct s_cmd
 } t_cmd;
 
 
+void execute_external(t_cmd *cmd, char **env);
 
 #endif

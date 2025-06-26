@@ -1,5 +1,5 @@
-#ifndef MINISHELL_H
-#define MINISHELL_H
+#ifndef REDIRECTIONS_H
+#define REDIRECTIONS_H
 
 #include <stdio.h>
 #include <unistd.h>

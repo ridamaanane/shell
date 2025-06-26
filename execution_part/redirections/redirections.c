@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "redirections.h"
 
 void check_fd(int fd)
 {

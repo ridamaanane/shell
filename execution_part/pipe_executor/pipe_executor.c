@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "pipe_executor.h"
 
 int count_cmds(t_cmd *cmd)
 {

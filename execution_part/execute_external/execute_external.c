@@ -1,4 +1,5 @@
-#include "minishell.h"
+#include "execute_external.h"
+
 void free_split_content(char **array)
 {
     int i;

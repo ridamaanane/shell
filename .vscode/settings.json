@@ -2,6 +2,11 @@
     "files.associations": {
         "minishell.h": "c",
         "environments.h": "c",
-        "readline.h": "c"
+        "readline.h": "c",
+        "builtins.h": "c",
+        "stdio.h": "c",
+        "libft.h": "c",
+        "pipe_executor.h": "c",
+        "redirections.h": "c"
     }
 }
