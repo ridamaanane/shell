@@ -36,19 +36,29 @@ void exec_builtin(t_cmd *cmd)
         do_unset(cmd);
 }
 
+int has_pipe(t_cmd *cmd)
+{
+    if (cmd && cmd->next != NULL)
+        return (1);
+    else
+        return (0);
+}
+
 void executor(t_cmd *cmd, char **envp)
 {
-    t_cmd *temp = cmd;
+    if (!cmd)
+        return;
 
-    while (temp)
+    if (has_pipe(cmd))
+        pipe_executor(cmd, envp);
+    else if (is_builtin(cmd))
     {
-        if (is_builtin(temp))
-        {
-            find_redirection(temp->redir);
-            exec_builtin(temp);
-        }
-        else
-            pipe_executor(temp, envp);
-        temp = temp->next;
+        find_redirection(cmd->redir);
+        exec_builtin(cmd);
+    }
+    else
+    {
+        execute_external(cmd, envp);
     }
 }
+
