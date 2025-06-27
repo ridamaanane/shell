@@ -1,4 +1,4 @@
-#include "pipe_executor.h"
+#include "execution/execution.h"
 
 int count_cmds(t_cmd *cmd)
 {
@@ -32,39 +32,7 @@ int *create_pipes(t_cmd *cmd)
     }
     return (pipes);
 }
-void free_split_content(char **array)
-{
-    int i;
 
-    i = 0;
-    while (array && array[i])
-        free(array[i++]);
-    free(array);
-}
-char *get_cmd_path(char *cmd)
-{
-    int i;
-    char *chunk;
-    char *full_path;
-    char **paths;
-    
-    paths = ft_split(getenv("PATH"), ':');
-    full_path = NULL;
-    i = 0;
-    while (paths && paths[i])
-    {
-        chunk = ft_strjoin(paths[i], "/");
-        full_path = ft_strjoin(chunk, cmd);
-        free(chunk);
-        if (access(full_path, X_OK) == 0)
-            break;
-        free(full_path);
-        full_path = NULL;
-        i++;
-    }
-    free_split_content(paths);
-    return (full_path);
-}
 void close_pipe_and_wait(int nb_cmds, int nb_pipes, int *pipes)
 {
     // parent: close pipes
@@ -135,39 +103,4 @@ void pipe_executor(t_cmd *cmd, char **envp)
     close_pipe_and_wait(nb_cmds, nb_pipes, pipes);
 }
 
-
-int main(int argc, char **argv, char **envp)
-{
-    (void)argc;  // mask unused warnings
-    (void)argv;
-
-    // Build t_cmd list: ls -l | wc -l | cat
-    t_cmd cmd1, cmd2, cmd3;
-
-    char *args1[] = {"ls", "-l", NULL};
-    char *args2[] = {"wc", "-l", NULL};
-    char *args3[] = {"cat", NULL};
-
-    cmd1.argv = args1;
-    cmd1.next = &cmd2;
-
-    cmd2.argv = args2;
-    cmd2.next = &cmd3;
-
-    cmd3.argv = args3;
-    cmd3.next = NULL;
-
-    pipe_executor(&cmd1, envp); 
-    // ✅ envp = environment variables dyal process
-    // ✅ lfa2ida:
-    
-    // bach command ywarath environment dyal terminal dyalek (ex: PATH, HOME...)
-    
-    // ✅ ila madirtich envp → cmd mayla9ach PATH → maykhdemch
-    
-    // 💡 yes: envp katsowb bach cmd ykhdm f nafs environment dyal terminal dyalek
-
-
-    return 0;
-}
 

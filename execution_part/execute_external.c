@@ -1,4 +1,4 @@
-#include "execute_external.h"
+#include "execution/execution.h"
 
 void free_split_content(char **array)
 {
@@ -62,23 +62,6 @@ void execute_external(t_cmd *cmd, char **env)
         printf("%s: command not found\n", cmd->argv[0]);
 }
 
-int main(int argc, char **argv, char **envp)
-{
-    (void) argc;
-    char *_argv[] = {strdup("cat"), NULL};
-     
-    (void) argv;
-    t_cmd *cmd = malloc(sizeof(t_cmd));
-    cmd->argv = (char **) _argv;
-    cmd->redir = malloc(sizeof(t_redir));
-    cmd->redir->type = R_HERDOC;
-    cmd->redir->filename = "rida";
-    cmd->redir->next = NULL;
-    cmd->next = NULL;
-    execute_external(cmd, envp);
-    free(cmd->redir);
-    free(cmd);
-}
 
 
 

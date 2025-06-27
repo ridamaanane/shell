@@ -11,8 +11,8 @@ int is_builtin(t_cmd *cmd)
         return 1;
     if (ft_strcmp(cmd->argv[0], "pwd") == 0)
         return 1;
-    if (ft_strcmp(cmd->argv[0], "exit") == 0)
-        return 1;
+    // if (ft_strcmp(cmd->argv[0], "exit") == 0)
+    //     return 1;
     if (ft_strcmp(cmd->argv[0], "env") == 0)
         return 1;
     if (ft_strcmp(cmd->argv[0], "export") == 0)
@@ -30,8 +30,8 @@ void exec_builtin(t_cmd *cmd, t_env *env)
         do_echo(cmd->argv, env);
     else if (ft_strcmp(cmd->argv[0], "pwd") == 0)
         do_pwd(cmd->argv, env);
-    else if (ft_strcmp(cmd->argv[0], "exit") == 0)
-        do_exit(cmd->argv, env);
+    // else if (ft_strcmp(cmd->argv[0], "exit") == 0)
+    //     do_exit(cmd->argv, env);
     else if (ft_strcmp(cmd->argv[0], "env") == 0)
         do_env(cmd->argv, env);
     else if (ft_strcmp(cmd->argv[0], "export") == 0)
@@ -64,5 +64,27 @@ void executor(t_cmd *cmd, t_env *env, char **envp)
     {
         execute_external(cmd, envp);
     }
+}
+
+int main(int argc, char **argv, char **envp)
+{
+    (void)argc;
+    (void)argv;
+    // Example env list (t9dar tzid real one)
+    t_env env;
+    env.name_of_variable = "PWD";
+    env.value = "/home/rida";
+    env.next = NULL;
+
+    // cmd: echo hello
+    t_cmd cmd;
+    char *args[] = {"cd", "rida", NULL};
+    cmd.argv = args;
+    cmd.redir = NULL;
+    cmd.next = NULL;
+
+    executor(&cmd, &env, envp);
+
+    return 0;
 }
 

@@ -7,6 +7,8 @@
         "stdio.h": "c",
         "libft.h": "c",
         "pipe_executor.h": "c",
-        "redirections.h": "c"
+        "redirections.h": "c",
+        "execution.h": "c",
+        "execute_external.h": "c"
     }
 }

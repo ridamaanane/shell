@@ -9,9 +9,6 @@
 #include <readline/readline.h>
 #include "../../Libft/libft.h"
 #include "../builtins/builtins.h"
-#include "../pipe_executor/pipe_executor.h"
-#include "../redirections/redirections.h"
-#include "../execute_external/execute_external.h"
 
 typedef enum s_redir_type
 {
@@ -34,6 +31,19 @@ typedef struct s_cmd
     t_redir *redir;      // list dial redirections
     struct s_cmd *next;  // command f pipeline (ila kayn)
 } t_cmd;
+
+
+
+
+//execute_external
+void execute_external(t_cmd *cmd, char **env);
+char *get_cmd_path(char *cmd);
+
+//pipe_executor
+void pipe_executor(t_cmd *cmd, char **envp);
+
+//find_redirection
+void find_redirection(t_redir *redir);
 
 
 #endif
