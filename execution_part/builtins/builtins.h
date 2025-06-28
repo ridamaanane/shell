@@ -45,6 +45,7 @@ void print_env(t_env *env);
 //do_exit
 void	do_exit(char **args, int *exit_status);
 
-
+//create_env
+t_env *create_env(char **envp);
 
 #endif

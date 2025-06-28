@@ -58,6 +58,7 @@ void executor(t_cmd *cmd, t_env *env, char **envp)
     else if (is_builtin(cmd))
     {
         find_redirection(cmd->redir);
+
         exec_builtin(cmd, env);
     }
     else
@@ -70,21 +71,19 @@ int main(int argc, char **argv, char **envp)
 {
     (void)argc;
     (void)argv;
-    // Example env list (t9dar tzid real one)
-    t_env env;
-    env.name_of_variable = "PWD";
-    env.value = "/home/rida";
-    env.next = NULL;
+    t_env *env;
 
-    // cmd: echo hello
+
+    // // cmd: echo hello
     t_cmd cmd;
-    char *args[] = {"cd", "rida", NULL};
+    char *args[] = {"ls", NULL , NULL};
     cmd.argv = args;
     cmd.redir = NULL;
     cmd.next = NULL;
 
-    executor(&cmd, &env, envp);
-
+    env = create_env(envp);
+    executor(&cmd, env, envp);
+    //print_env(env);
     return 0;
 }
 
